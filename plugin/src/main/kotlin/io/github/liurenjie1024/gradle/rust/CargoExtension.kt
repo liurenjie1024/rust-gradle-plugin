@@ -6,13 +6,13 @@ import org.gradle.api.provider.Property
 
 enum class FeaturesType { All, Default, NoDefault}
 
-data class FeatureSpec(val type: FeaturesType = FeaturesType.Default, val featureSet: Set<String> = emptySet()) {
+data class FeatureSpec private constructor(val type: FeaturesType = FeaturesType.Default, val featureSet: Set<String> = emptySet()) {
     companion object {
         fun all(): FeatureSpec = FeatureSpec(type = FeaturesType.All)
 
-        fun defaultAnd(inputFeatureSet: Array<String>) = FeatureSpec(featureSet = inputFeatureSet.toSet())
+        fun defaultAnd(extraFeatures: Array<String> = emptyArray()) = FeatureSpec(featureSet = extraFeatures.toSet())
 
-        fun noDefaultBut(featureSet: Array<String>) = FeatureSpec(type = FeaturesType.NoDefault, featureSet = featureSet.toSet())
+        fun noDefaultBut(features: Array<String>) = FeatureSpec(type = FeaturesType.NoDefault, featureSet = features.toSet())
     }
 }
 

@@ -13,13 +13,13 @@ open class CargoBuildTask: DefaultTask() {
     @Input
     val cargoCommand: Property<String> = project.objects.property(String::class.java)
     @Input
-    var release: Boolean = false
-    @Input
     var verbose: Boolean = false
+    @Input
+    var release: Boolean = false
     @Input
     var extraCargoBuildArguments: List<String> = emptyList()
     @Input
-    var featureSpec: FeatureSpec = FeatureSpec()
+    var featureSpec: FeatureSpec = FeatureSpec.defaultAnd()
 
     @Suppress("unused")
     @TaskAction

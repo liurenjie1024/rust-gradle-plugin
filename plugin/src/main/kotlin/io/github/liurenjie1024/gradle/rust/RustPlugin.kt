@@ -20,8 +20,6 @@ open class RustPlugin : Plugin<Project> {
                 group = "build"
                 description = "Run cargo build command"
                 cargoCommand.set(cargoExtension.cargoCommand)
-                // Disable user change
-                cargoCommand.finalizeValue()
             }
             tasks.getByPath("build").dependsOn(cargoBuildTask)
         }

@@ -10,7 +10,7 @@ import kotlin.test.assertTrue
 const val PLUGIN_ID: String = "io.github.liurenjie1024.gradle.rust"
 
 class RustPluginTest {
-    lateinit var project: Project
+    private lateinit var project: Project
 
     @Before
     fun setupTest() {
@@ -28,9 +28,12 @@ class RustPluginTest {
         assertTrue(task is CargoBuildTask)
 
         task.apply {
+            verbose = true
             release = true
+            extraCargoBuildArguments = listOf("extra")
+            featureSpec = FeatureSpec.all()
         }
 
-        assertEquals(listOf("cargo2", "build", "--release"), task.buildCommandLine())
+        assertEquals(listOf("cargo2", "build", "--verbose", "--all-features", "--release", "extra"), task.buildCommandLine())
     }
 }
