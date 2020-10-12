@@ -1,3 +1,4 @@
+import io.github.liurenjie1024.gradle.rust.FeatureSpec as CargoFeatureSpec
 buildscript {
     repositories {
         mavenCentral()
@@ -10,9 +11,11 @@ buildscript {
 apply(plugin = "io.github.liurenjie1024.gradle.rust")
 
 configure<io.github.liurenjie1024.gradle.rust.CargoExtension> {
-    cargoCommand = "cargo"
+    cargoCommand.set("cargo")
 }
 
 tasks.withType(io.github.liurenjie1024.gradle.rust.CargoBuildTask::class.java).configureEach {
-    cargoCommand = "cargo"
+    verbose = false
+    release = true
+    featureSpec = CargoFeatureSpec.all()
 }
