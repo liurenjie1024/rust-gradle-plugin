@@ -1,21 +1,25 @@
 package io.github.liurenjie1024.gradle.rust;
 
 import org.gradle.api.DefaultTask
+import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
-import org.gradle.process.ExecSpec
 
-open class CargoBuildTask : DefaultTask() {
+
+open class CargoBuildTask: DefaultTask() {
+    companion object {
+        const val NAME = "cargoBuild"
+    }
     @Input
-    var cargoCommand: String = DEFAULT_CARGO_COMMAND
-//    @Input
-    private val release: Boolean = false
-//    @Input
-    private val verbose: Boolean = false
-//    @Input
-    private val extraCargoBuildArguments: List<String>? = null
-//    @Input
-    private val featureSpec: FeatureSpec = FeatureSpec()
+    val cargoCommand: Property<String> = project.objects.property(String::class.java)
+    @Input
+    var release: Boolean = false
+    @Input
+    var verbose: Boolean = false
+    @Input
+    var extraCargoBuildArguments: List<String> = emptyList()
+    @Input
+    var featureSpec: FeatureSpec = FeatureSpec()
 
     @Suppress("unused")
     @TaskAction
@@ -26,7 +30,7 @@ open class CargoBuildTask : DefaultTask() {
     }
 
     fun buildCommandLine(): List<String> {
-        val commandLine = mutableListOf(cargoCommand, "build")
+        val commandLine = mutableListOf(cargoCommand.get(), "build")
 
         if (verbose) {
             commandLine += "--verbose"

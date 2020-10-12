@@ -10,9 +10,9 @@ buildscript {
 apply(plugin = "io.github.liurenjie1024.gradle.rust")
 
 configure<io.github.liurenjie1024.gradle.rust.CargoExtension> {
-    cargoCommand = "cargo"
+    cargoCommand.set("cargo")
 }
 
 tasks.withType(io.github.liurenjie1024.gradle.rust.CargoBuildTask::class.java).configureEach {
-    cargoCommand = "cargo"
+    release = true
 }
