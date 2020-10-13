@@ -37,3 +37,7 @@ jobs:
       - name: Clean sample
         run: ../gradlew clean
         working-directory: sample
+
+      - name: Test sample
+        run: ../gradlew check
+        working-directory: sample
