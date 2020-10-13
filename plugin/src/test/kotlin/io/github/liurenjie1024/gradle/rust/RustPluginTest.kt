@@ -36,4 +36,17 @@ class RustPluginTest {
 
         assertEquals(listOf("cargo2", "build", "--verbose", "--all-features", "--release", "extra"), task.buildCommandLine())
     }
+
+    @Test
+    fun checkCargoCleanTask() {
+        val task = project.tasks.getByName(CargoCleanTask.NAME)
+        assertTrue(task is CargoCleanTask)
+
+        task.apply {
+            verbose = true
+            extraCargoBuildArguments = listOf("extra")
+        }
+
+        assertEquals(listOf("cargo2", "clean", "--verbose", "extra"), task.buildCommandLine())
+    }
 }

@@ -15,6 +15,13 @@ open class RustPlugin : Plugin<Project> {
             project.pluginManager.apply(BasePlugin::class.java)
             cargoExtension = extensions.create(CargoExtension.NAME, CargoExtension::class.java)
 
+            createCargoBuildTask(project)
+            createCargoCleanTask(project)
+        }
+    }
+
+    private fun createCargoBuildTask(project: Project) {
+        with(project) {
             // Create cargo build task
             val cargoBuildTask = tasks.create(CargoBuildTask.NAME, CargoBuildTask::class.java).apply {
                 group = "build"
@@ -22,6 +29,18 @@ open class RustPlugin : Plugin<Project> {
                 cargoCommand.set(cargoExtension.cargoCommand)
             }
             tasks.getByPath("build").dependsOn(cargoBuildTask)
+        }
+    }
+
+    private fun createCargoCleanTask(project: Project) {
+        with(project) {
+            // Create cargo build task
+            val cargoCleanTask = tasks.create(CargoCleanTask.NAME, CargoCleanTask::class.java).apply {
+                group = "build"
+                description = "Run cargo clean command"
+                cargoCommand.set(cargoExtension.cargoCommand)
+            }
+            tasks.getByPath("clean").dependsOn(cargoCleanTask)
         }
     }
 }
