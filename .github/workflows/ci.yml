@@ -41,3 +41,7 @@ jobs:
       - name: Test sample
         run: ../gradlew check
         working-directory: sample
+
+      - name: Build doc for sample
+        run: ../gradlew cargoDoc
+        working-directory: sample
