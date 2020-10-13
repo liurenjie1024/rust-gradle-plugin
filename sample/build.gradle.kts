@@ -19,3 +19,8 @@ tasks.withType(io.github.liurenjie1024.gradle.rust.CargoBuildTask::class.java).c
     release = true
     featureSpec = CargoFeatureSpec.all()
 }
+
+tasks.withType(io.github.liurenjie1024.gradle.rust.CargoCleanTask::class.java).configureEach {
+    verbose = false
+}
+

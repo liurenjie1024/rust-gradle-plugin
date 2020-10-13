@@ -33,3 +33,7 @@ jobs:
       - name: Build sample
         run: ../gradlew build
         working-directory: sample
+
+      - name: Clean sample
+        run: ../gradlew clean
+        working-directory: sample
