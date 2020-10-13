@@ -17,6 +17,7 @@ open class RustPlugin : Plugin<Project> {
 
             createCargoBuildTask(project)
             createCargoCleanTask(project)
+            createCargoTestTask(project)
         }
     }
 
@@ -41,6 +42,18 @@ open class RustPlugin : Plugin<Project> {
                 cargoCommand.set(cargoExtension.cargoCommand)
             }
             tasks.getByPath("clean").dependsOn(cargoCleanTask)
+        }
+    }
+
+    private fun createCargoTestTask(project: Project) {
+        with(project) {
+            // Create cargo build task
+            val cargoTestTask = tasks.create(CargoTestTask.NAME, CargoTestTask::class.java).apply {
+                group = "verification"
+                description = "Run cargo test command"
+                cargoCommand.set(cargoExtension.cargoCommand)
+            }
+            tasks.getByPath("check").dependsOn(cargoTestTask)
         }
     }
 }
