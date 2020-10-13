@@ -49,4 +49,16 @@ class RustPluginTest {
 
         assertEquals(listOf("cargo2", "clean", "--verbose", "extra"), task.buildCommandLine())
     }
+
+    @Test
+    fun checkCargoTestTask() {
+        val task = project.tasks.getByName(CargoTestTask.NAME)
+        assertTrue(task is CargoTestTask)
+
+        task.apply {
+            extraCargoBuildArguments = listOf("extra")
+        }
+
+        assertEquals(listOf("cargo2", "test", "extra"), task.buildCommandLine())
+    }
 }
