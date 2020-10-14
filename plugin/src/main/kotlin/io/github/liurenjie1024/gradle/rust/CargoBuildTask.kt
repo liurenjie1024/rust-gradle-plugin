@@ -17,7 +17,7 @@ open class CargoBuildTask: DefaultTask() {
     @Input
     var release: Boolean = false
     @Input
-    var extraCargoBuildArguments: List<String> = emptyList()
+    var extraArguments: List<String> = emptyList()
     @Input
     var featureSpec: FeatureSpec = FeatureSpec.defaultAnd()
 
@@ -67,7 +67,7 @@ open class CargoBuildTask: DefaultTask() {
             commandLine += "--release"
         }
 
-        extraCargoBuildArguments?.let {
+        extraArguments?.let {
             commandLine.addAll(it)
         }
 
