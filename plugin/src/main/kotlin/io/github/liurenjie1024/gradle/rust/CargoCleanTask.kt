@@ -15,7 +15,7 @@ open class CargoCleanTask: DefaultTask() {
     @Input
     var verbose: Boolean = false
     @Input
-    var extraCargoBuildArguments: List<String> = emptyList()
+    var extraArguments: List<String> = emptyList()
 
     @Suppress("unused")
     @TaskAction
@@ -32,7 +32,7 @@ open class CargoCleanTask: DefaultTask() {
             commandLine += "--verbose"
         }
 
-        extraCargoBuildArguments?.let {
+        extraArguments?.let {
             commandLine.addAll(it)
         }
 

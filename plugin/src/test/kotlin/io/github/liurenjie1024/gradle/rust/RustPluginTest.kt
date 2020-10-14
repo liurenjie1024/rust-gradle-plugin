@@ -30,7 +30,7 @@ class RustPluginTest {
         task.apply {
             verbose = true
             release = true
-            extraCargoBuildArguments = listOf("extra")
+            extraArguments = listOf("extra")
             featureSpec = FeatureSpec.all()
         }
 
@@ -44,7 +44,7 @@ class RustPluginTest {
 
         task.apply {
             verbose = true
-            extraCargoBuildArguments = listOf("extra")
+            extraArguments = listOf("extra")
         }
 
         assertEquals(listOf("cargo2", "clean", "--verbose", "extra"), task.buildCommandLine())
@@ -56,7 +56,7 @@ class RustPluginTest {
         assertTrue(task is CargoTestTask)
 
         task.apply {
-            extraCargoBuildArguments = listOf("extra")
+            extraArguments = listOf("extra")
         }
 
         assertEquals(listOf("cargo2", "test", "extra"), task.buildCommandLine())

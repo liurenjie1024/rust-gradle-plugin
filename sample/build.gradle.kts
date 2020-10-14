@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("io.github.liurenjie1024.gradle.rust:rust-gradle-plugin:0.0.1-SNAPSHOT")
+        classpath("io.github.liurenjie1024.gradle.rust:rust-gradle-plugin:0.1.0")
     }
 }
 

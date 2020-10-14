@@ -13,7 +13,7 @@ open class CargoTestTask: DefaultTask() {
     @Input
     val cargoCommand: Property<String> = project.objects.property(String::class.java)
     @Input
-    var extraCargoBuildArguments: List<String> = emptyList()
+    var extraArguments: List<String> = emptyList()
 
     @Suppress("unused")
     @TaskAction
@@ -26,7 +26,7 @@ open class CargoTestTask: DefaultTask() {
     fun buildCommandLine(): List<String> {
         val commandLine = mutableListOf(cargoCommand.get(), "test")
 
-        extraCargoBuildArguments?.let {
+        extraArguments.let {
             commandLine.addAll(it)
         }
 
