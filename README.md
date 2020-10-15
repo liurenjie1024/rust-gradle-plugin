@@ -9,8 +9,6 @@ This plugin help to integrate rust project into gradle projects.
 In your *project's* build.gradle.kts, apply plugin and add the `cargo` configuration:
 
 ```kotlin
-import io.github.liurenjie1024.gradle.rust.FeatureSpec as CargoFeatureSpec
-
 plugins {
     id("io.github.liurenjie1024.gradle.rust") version "<latest version>"
 }
